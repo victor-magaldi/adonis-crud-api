@@ -17,13 +17,11 @@
 | import './routes/customer'
 |
 */
-import * as data from '../mock/bd.json'
+
 import Route from '@ioc:Adonis/Core/Route'
-console.log(data)
+import { postController } from '../Controllers/Http/PostsController'
 
 Route.get('/', async () => {
   return { hello: 'world' }
 })
-Route.get('/teste', async () => {
-  return { hello: 'world' }
-})
+Route.get('/posts', postController.index)

@@ -1,6 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class PostsController {
+class PostsController {
   public async index({ request, response }: HttpContextContract) {
     console.log(request, response)
     return [
@@ -57,3 +57,5 @@ export default class PostsController {
     ]
   }
 }
+
+export const postController = new PostsController()
