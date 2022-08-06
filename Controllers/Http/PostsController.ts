@@ -2,7 +2,9 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { DATA } from '../../mock/bd'
 
 class PostsController {
-  public async index() {
+  public async index(ctx: any) {
+    ctx.teste = 'teste'
+
     return DATA
   }
   public async store({ request, response }: HttpContextContract) {

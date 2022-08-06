@@ -25,4 +25,12 @@ Route.get('/', async () => {
   return { hello: 'world' }
 })
 Route.get('/posts', postController.index)
+  .middleware(async (ctx, next) => {
+    console.log(`Inside middleware ${ctx.request.url()}`)
+    await next()
+  })
+  .middleware(async (ctx, next) => {
+    console.log(`Inside middleware 2 ${ctx.request.url()}`)
+    await next()
+  })
 Route.get('/posts/:id', postController.show)
