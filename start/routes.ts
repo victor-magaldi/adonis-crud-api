@@ -27,3 +27,5 @@ Route.get('/', async () => {
 Route.get('/posts', postController.index)
 Route.get('/posts/:id', postController.show)
 Route.post('/post/create', postController.store)
+Route.put('/post/create', postController.update)
+Route.delete('/post/:house_id', postController.destroy)
