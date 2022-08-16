@@ -29,18 +29,19 @@ destroy: deletar uma posts
   }
 
   public async update({ request, response }: HttpContextContract) {
-    console.log(request, response)
+    const id = request.param('id')
+    const { title, userId, body } = request.body()
 
-    return [
-      {
-        id: 1,
-        title: 'Hello world',
-      },
-      {
-        id: 2,
-        title: 'Hello universe',
-      },
-    ]
+    const newData = DATA.filter((post) => post.id !== Number(id))
+
+    const updatedPost = {
+      userId,
+      id,
+      title,
+      body,
+    }
+    newData.push(updatedPost)
+    return newData
   }
   public async destroy({ request, response }: HttpContextContract) {
     console.log(request, response)
