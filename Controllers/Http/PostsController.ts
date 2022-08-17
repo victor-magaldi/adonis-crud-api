@@ -49,7 +49,7 @@ destroy: deletar uma posts
   public async destroy({ request, response }: HttpContextContract) {
     const id = request.param('id')
     const indexElementUpdated = DATA.findIndex((post) => post.id === Number(id))
-    console.log(id, indexElementUpdated)
+
     if (indexElementUpdated >= 0) {
       DATA.splice(indexElementUpdated, 1)
     }
