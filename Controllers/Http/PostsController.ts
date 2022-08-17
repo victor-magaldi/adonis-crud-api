@@ -1,6 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { DATA } from '../../mock/bd'
 
+let DATABD = DATA
 class PostsController {
   /*
 index:listagem de posts
@@ -32,30 +33,26 @@ destroy: deletar uma posts
     const id = request.param('id')
     const { title, userId, body } = request.body()
 
-    const newData = DATA.filter((post) => post.id !== Number(id))
-
+    const indexElementUpdated = DATA.findIndex((post) => post.id === Number(id))
     const updatedPost = {
       userId,
       id,
       title,
       body,
     }
-    newData.push(updatedPost)
-    return newData
+    if (indexElementUpdated >= 0) {
+      DATA[indexElementUpdated] = updatedPost
+    }
+
+    return response.json(updatedPost)
   }
   public async destroy({ request, response }: HttpContextContract) {
-    console.log(request, response)
-
-    return [
-      {
-        id: 1,
-        title: 'Hello world',
-      },
-      {
-        id: 2,
-        title: 'Hello universe',
-      },
-    ]
+    const id = request.param('id')
+    if (id) {
+      return DATA.filter((post) => post.id !== Number(id))
+    } else {
+      response.json({ message: 'id required' })
+    }
   }
 }
 
