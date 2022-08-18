@@ -2,14 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { DATA } from '../../mock/bd'
 
 class PostsController {
-  /*
-index:listagem de posts
-store : criar uma nova posts (login)
-show: listar uma única posts
-update : atualizar alguma posts
-destroy: deletar uma posts
-*/
-  public async index({ request, response }: HttpContextContract) {
+  public async index({ response }: HttpContextContract) {
     return response.status(200).json(DATA)
   }
   public async store({ request, response }: HttpContextContract) {
