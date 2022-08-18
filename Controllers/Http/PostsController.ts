@@ -1,7 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { DATA } from '../../mock/bd'
 
-let DATABD = DATA
 class PostsController {
   /*
 index:listagem de posts
@@ -10,8 +9,8 @@ show: listar uma única posts
 update : atualizar alguma posts
 destroy: deletar uma posts
 */
-  public async index() {
-    return DATA
+  public async index({ request, response }: HttpContextContract) {
+    return response.status(200).json(DATA)
   }
   public async store({ request, response }: HttpContextContract) {
     const { title, userId, body } = request.body()
@@ -24,9 +23,9 @@ destroy: deletar uma posts
     DATA.push(newPost)
     return response.status(200).json(newPost)
   }
-  public async show({ request }: HttpContextContract) {
+  public async show({ request, response }: HttpContextContract) {
     const id = request.param('id')
-    return DATA.find((post) => post.id === Number(id))
+    return response.status(200).json(DATA.find((post) => post.id === Number(id)))
   }
 
   public async update({ request, response }: HttpContextContract) {
@@ -44,7 +43,7 @@ destroy: deletar uma posts
       DATA[indexElementUpdated] = updatedPost
     }
 
-    return response.json(updatedPost)
+    return response.status(200).json(updatedPost)
   }
   public async destroy({ request, response }: HttpContextContract) {
     const id = request.param('id')
@@ -53,7 +52,7 @@ destroy: deletar uma posts
     if (indexElementUpdated >= 0) {
       DATA.splice(indexElementUpdated, 1)
     }
-    return response.json(DATA)
+    return response.status(200).json(DATA)
   }
 }
 
