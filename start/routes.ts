@@ -33,7 +33,7 @@ Route.delete('/posts/:id', postController.destroy)
 Route.get('/session', async ({ session }) => {
   // Read value
   const cartTotal = session.get('cart_total')
-  session.console.log(cartTotal)
+  console.log(cartTotal)
   // Write value
   session.put('cart_total', cartTotal + 10)
 })
