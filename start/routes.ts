@@ -29,3 +29,11 @@ Route.get('/posts/:id', postController.show)
 Route.post('/posts/create', postController.store)
 Route.put('/posts/:id', postController.update)
 Route.delete('/posts/:id', postController.destroy)
+
+Route.get('/session', async ({ session }) => {
+  // Read value
+  const cartTotal = session.get('cart_total')
+  session.console.log(cartTotal)
+  // Write value
+  session.put('cart_total', cartTotal + 10)
+})
