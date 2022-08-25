@@ -1,3 +1,4 @@
+import Event from '@ioc:Adonis/Core/Event'
 /**
  * Contract source: https://git.io/JfefG
  *
@@ -25,5 +26,8 @@ declare module '@ioc:Adonis/Core/Event' {
   | an instance of the the UserModel only.
   |
   */
-  interface EventsList {}
+  interface EventsList {
+    'new:post': unknown
+  }
 }
+Event.on('new:post', 'User.onNewPost')
