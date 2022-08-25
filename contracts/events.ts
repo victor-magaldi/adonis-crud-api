@@ -30,4 +30,7 @@ declare module '@ioc:Adonis/Core/Event' {
     'new:post': unknown
   }
 }
-Event.on('new:post', 'User.onNewPost')
+
+Event.on('new:post', (user) => {
+  console.log(user)
+})

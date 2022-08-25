@@ -1,4 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Event from '@ioc:Adonis/Core/Event'
+
 import { DATA } from '../../mock/bd'
 
 class PostsController {
@@ -12,6 +14,13 @@ class PostsController {
       id: DATA.length + 1,
       title,
       body,
+    }
+    try {
+      console.log('try')
+      Event.emit('new:post', { id: 1 })
+    } catch (error) {
+      console.log('error', error)
+      // Handle error
     }
     DATA.push(newPost)
     return response.status(200).json(newPost)
